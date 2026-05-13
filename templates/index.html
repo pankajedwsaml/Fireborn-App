@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Motivation App</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 350px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        #quote {
+            font-size: 18px;
+            margin: 20px 0;
+            min-height: 40px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            margin-top: 10px;
+            outline: none;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #ff9800;
+            color: white;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #e68900;
+        }
+
+        #allQuotes {
+            margin-top: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        .q {
+            background: white;
+            color: black;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .deleteBtn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>💡 Motivation App</h1>
+
+    <div id="quote">Click for motivation</div>
+    <button onclick="getQuote()">New Quote</button>
+
+    <input id="newQuote" placeholder="Write your quote">
+    <button onclick="addQuote()">Add Quote</button>
+
+    <button onclick="loadAll()">Show All Quotes</button>
+
+    <div id="allQuotes"></div>
+</div>
+
+<script>
+
+function getQuote() {
+    fetch('/get_quote')
+    .then(r => r.json())
+    .then(data => {
+        document.getElementById("quote").innerText = data.quote;
+    });
+}
+
+function addQuote() {
+    let q = document.getElementById("newQuote").value;
+
+    fetch('/add_quote', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({quote: q})
+    })
+    .then(() => {
+        document.getElementById("newQuote").value = "";
+        getQuote();
+    });
+}
+
+function loadAll() {
+    fetch('/all_quotes')
+    .then(r => r.json())
+    .then(data => {
+
+        let box = document.getElementById("allQuotes");
+        box.innerHTML = "";
+
+        data.forEach(q => {
+
+            let div = document.createElement("div");
+            div.className = "q";
+
+            let text = document.createElement("span");
+            text.innerText = q;
+
+            let btn = document.createElement("button");
+            btn.innerText = "Delete";
+
+            btn.onclick = function() {
+                deleteQuote(q);
+            };
+
+            div.appendChild(text);
+            div.appendChild(btn);
+
+            box.appendChild(div);
+
+        });
+
+    });
+}
+
+function deleteQuote(q) {
+    fetch('/delete_quote', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({quote: q})
+    })
+    .then(() => {
+        loadAll();
+    });
+}
+
+</script>
+
+</body>
+</html>

@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <title>Fireborn Motivation</title>
 
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
 
         body {
 
             margin: 0;
-            padding: 0;
+            padding: 12px;
 
             font-family: Arial;
 
@@ -31,7 +41,8 @@
 
         .container {
 
-            width: 440px;
+            width: 100%;
+            max-width: 420px;
 
             background:
             rgba(255,255,255,0.18);
@@ -39,16 +50,16 @@
             backdrop-filter: blur(18px);
 
             border:
-            1px solid rgba(255,255,255,0.25);
+            1px solid rgba(255,255,255,0.2);
 
-            border-radius: 28px;
+            border-radius: 25px;
 
-            padding: 30px;
+            padding: 20px;
 
             text-align: center;
 
             box-shadow:
-            0px 15px 40px rgba(0,0,0,0.25);
+            0px 12px 30px rgba(0,0,0,0.25);
 
         }
 
@@ -58,9 +69,21 @@
 
             color: white;
 
-            font-size: 30px;
+            font-size: 24px;
 
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+
+        }
+
+
+
+        button {
+
+            border: none;
+
+            cursor: pointer;
+
+            font-weight: bold;
 
         }
 
@@ -76,17 +99,13 @@
 
             color: white;
 
-            border: none;
+            padding: 10px 14px;
 
-            padding: 10px 16px;
-
-            border-radius: 14px;
+            border-radius: 12px;
 
             margin: 4px;
 
-            cursor: pointer;
-
-            font-weight: bold;
+            font-size: 14px;
 
         }
 
@@ -102,41 +121,11 @@
 
             color: white;
 
-            border: none;
+            padding: 12px 16px;
 
-            padding: 13px 20px;
+            border-radius: 12px;
 
-            border-radius: 14px;
-
-            margin: 8px;
-
-            cursor: pointer;
-
-            font-weight: bold;
-
-        }
-
-
-
-        button:hover {
-
-            transform: scale(1.08);
-
-        }
-
-
-
-        input {
-
-            width: 85%;
-
-            padding: 14px;
-
-            margin: 12px;
-
-            border-radius: 14px;
-
-            border: none;
+            margin: 6px;
 
             font-size: 15px;
 
@@ -147,13 +136,13 @@
         #quoteBox {
 
             background:
-            rgba(255,255,255,0.9);
-
-            margin-top: 20px;
-
-            padding: 22px;
+            rgba(255,255,255,0.95);
 
             border-radius: 18px;
+
+            padding: 18px;
+
+            margin-top: 18px;
 
         }
 
@@ -163,9 +152,9 @@
 
             color: #ea580c;
 
-            font-size: 18px;
-
             font-weight: bold;
+
+            font-size: 16px;
 
         }
 
@@ -175,9 +164,27 @@
 
             color: #1e293b;
 
-            font-size: 20px;
+            font-size: 18px;
 
             line-height: 1.5;
+
+        }
+
+
+
+        input {
+
+            width: 100%;
+
+            padding: 14px;
+
+            margin-top: 15px;
+
+            border-radius: 12px;
+
+            border: none;
+
+            font-size: 15px;
 
         }
 
@@ -189,11 +196,13 @@
 
             margin-top: 12px;
 
-            padding: 15px;
+            padding: 14px;
 
-            border-radius: 14px;
+            border-radius: 12px;
 
             text-align: left;
+
+            font-size: 15px;
 
         }
 
@@ -207,13 +216,32 @@
 
             color: white;
 
-            border: none;
-
             padding: 8px 12px;
 
             border-radius: 8px;
 
-            cursor: pointer;
+        }
+
+
+
+        @media (max-width: 480px) {
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .filter-btn {
+                font-size: 13px;
+                padding: 9px 11px;
+            }
+
+            .main-btn {
+                font-size: 14px;
+            }
+
+            #quoteText {
+                font-size: 16px;
+            }
 
         }
 
@@ -274,7 +302,6 @@
     </button>
 
 
-
     <button class="main-btn"
     onclick="showAll()">
     Show All
@@ -282,17 +309,9 @@
 
 
 
-    <br><br>
-
-
-
     <input
     id="newQuote"
-    placeholder="Write your quote">
-
-
-
-    <br>
+    placeholder="Write your quote here...">
 
 
 

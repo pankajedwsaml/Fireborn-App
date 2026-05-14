@@ -3,60 +3,117 @@ import random
 
 app = Flask(__name__)
 
-import os
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FILE = os.path.join(BASE_DIR, "quotes.txt")
+quotes = {
 
-def load_quotes():
-    try:
-        with open(FILE, "r", encoding="utf-8") as f:
-            return [q.strip() for q in f.readlines() if q.strip()]
-    except FileNotFoundError:
-        return []
+    "Study": [
+        "Small progress is still progress.",
+        "Discipline beats motivation.",
+        "Study now. Lead later."
+    ],
 
-def save_quote(q):
-    with open(FILE, "a", encoding="utf-8") as f:
-        f.write(q.strip() + "\n")
+    "Gym": [
+        "Pain builds power.",
+        "One more rep changes you.",
+        "Strong body. Strong mind."
+    ],
+
+    "Life": [
+        "Growth is uncomfortable.",
+        "Keep moving.",
+        "Hard times shape legends."
+    ],
+
+    "Fireborn": [
+        "Born weak. Built in fire.",
+        "A king is forged.",
+        "Fire never asks permission."
+    ]
+
+}
+
+
 
 @app.route('/')
 def home():
     return render_template("index.html")
 
-@app.route('/get_quote')
-def get_quote():
-    quotes = load_quotes()
-    if quotes:
-        return jsonify({"quote": random.choice(quotes)})
-    return jsonify({"quote": "Add your first quote!"})
+
+
+@app.route('/random_quote/<category>')
+def random_quote(category):
+
+    if category in quotes:
+
+        return jsonify({
+            "category": category,
+            "quote": random.choice(
+                quotes[category]
+            )
+        })
+
+    return jsonify({})
+
+
+
+@app.route('/all_quotes/<category>')
+def all_quotes(category):
+
+    data = []
+
+
+    if category in quotes:
+
+        for q in quotes[category]:
+
+            data.append(
+                category + "|" + q
+            )
+
+
+    return jsonify(data)
+
+
 
 @app.route('/add_quote', methods=["POST"])
 def add_quote():
-    data = request.get_json()
-    quote = data.get("quote", "").strip()
 
-    if quote:
-        save_quote(quote)
+    data = request.json
 
-    return jsonify({"status": "saved"})
 
-@app.route('/all_quotes')
-def all_quotes():
-    return jsonify(load_quotes())
+    quotes[
+        data["category"]
+    ].append(
+        data["quote"]
+    )
+
+
+    return jsonify({
+        "status": "saved"
+    })
+
+
 
 @app.route('/delete_quote', methods=["POST"])
 def delete_quote():
-    data = request.get_json()
-    target = data.get("quote", "").strip()
 
-    quotes = load_quotes()
-    updated = [q for q in quotes if q != target]
+    data = request.json
 
-    with open(FILE, "w", encoding="utf-8") as f:
-        for q in updated:
-            f.write(q + "\n")
 
-    return jsonify({"status": "deleted"})
+    if data["quote"] in quotes[data["category"]]:
+
+        quotes[
+            data["category"]
+        ].remove(
+            data["quote"]
+        )
+
+
+    return jsonify({
+        "status": "deleted"
+    })
+
+
 
 if __name__ == "__main__":
-    app.run(debug=True, use_reloader=False)
+    app.run(debug=True)

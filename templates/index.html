@@ -1,177 +1,506 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Motivation App</title>
+    <title>Fireborn Motivation</title>
 
     <style>
+
         body {
+
             margin: 0;
+            padding: 0;
+
             font-family: Arial;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            color: white;
+
+            min-height: 100vh;
+
+            background:
+            linear-gradient(
+            135deg,
+            #1e3a8a,
+            #3b82f6,
+            #60a5fa);
+
         }
 
-        .card {
-            background: rgba(255,255,255,0.1);
+
+
+        .container {
+
+            width: 440px;
+
+            background:
+            rgba(255,255,255,0.18);
+
+            backdrop-filter: blur(18px);
+
+            border:
+            1px solid rgba(255,255,255,0.25);
+
+            border-radius: 28px;
+
             padding: 30px;
-            border-radius: 15px;
+
             text-align: center;
-            width: 350px;
-            backdrop-filter: blur(10px);
+
+            box-shadow:
+            0px 15px 40px rgba(0,0,0,0.25);
+
         }
+
+
 
         h1 {
-            margin-bottom: 20px;
-        }
 
-        #quote {
-            font-size: 18px;
-            margin: 20px 0;
-            min-height: 40px;
-        }
-
-        input {
-            width: 90%;
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            margin-top: 10px;
-            outline: none;
-        }
-
-        button {
-            margin-top: 10px;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            background: #ff9800;
             color: white;
-            font-weight: bold;
+
+            font-size: 30px;
+
+            margin-bottom: 25px;
+
         }
+
+
+
+        .filter-btn {
+
+            background:
+            linear-gradient(
+            135deg,
+            #f59e0b,
+            #ea580c);
+
+            color: white;
+
+            border: none;
+
+            padding: 10px 16px;
+
+            border-radius: 14px;
+
+            margin: 4px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+        }
+
+
+
+        .main-btn {
+
+            background:
+            linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8);
+
+            color: white;
+
+            border: none;
+
+            padding: 13px 20px;
+
+            border-radius: 14px;
+
+            margin: 8px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+        }
+
+
 
         button:hover {
-            background: #e68900;
+
+            transform: scale(1.08);
+
         }
 
-        #allQuotes {
-            margin-top: 15px;
-            max-height: 200px;
-            overflow-y: auto;
-            text-align: left;
-        }
 
-        .q {
-            background: white;
-            color: black;
-            padding: 8px;
-            margin: 5px 0;
-            border-radius: 6px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
 
-        .deleteBtn {
-            background: red;
-            color: white;
+        input {
+
+            width: 85%;
+
+            padding: 14px;
+
+            margin: 12px;
+
+            border-radius: 14px;
+
             border: none;
-            padding: 5px 8px;
-            border-radius: 5px;
-            cursor: pointer;
+
+            font-size: 15px;
+
         }
+
+
+
+        #quoteBox {
+
+            background:
+            rgba(255,255,255,0.9);
+
+            margin-top: 20px;
+
+            padding: 22px;
+
+            border-radius: 18px;
+
+        }
+
+
+
+        #selectedCategory {
+
+            color: #ea580c;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+        }
+
+
+
+        #quoteText {
+
+            color: #1e293b;
+
+            font-size: 20px;
+
+            line-height: 1.5;
+
+        }
+
+
+
+        .quote-item {
+
+            background: white;
+
+            margin-top: 12px;
+
+            padding: 15px;
+
+            border-radius: 14px;
+
+            text-align: left;
+
+        }
+
+
+
+        .delete-btn {
+
+            margin-top: 10px;
+
+            background: crimson;
+
+            color: white;
+
+            border: none;
+
+            padding: 8px 12px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+        }
+
     </style>
+
 </head>
 
 <body>
 
-<div class="card">
-    <h1>💡 Motivation App</h1>
 
-    <div id="quote">Click for motivation</div>
-    <button onclick="getQuote()">New Quote</button>
+<div class="container">
 
-    <input id="newQuote" placeholder="Write your quote">
-    <button onclick="addQuote()">Add Quote</button>
+    <h1>🔥 Fireborn Motivation</h1>
 
-    <button onclick="loadAll()">Show All Quotes</button>
+
+    <button class="filter-btn"
+    onclick="setCategory('Study')">
+    Study
+    </button>
+
+
+    <button class="filter-btn"
+    onclick="setCategory('Gym')">
+    Gym
+    </button>
+
+
+    <button class="filter-btn"
+    onclick="setCategory('Life')">
+    Life
+    </button>
+
+
+    <button class="filter-btn"
+    onclick="setCategory('Fireborn')">
+    Fireborn
+    </button>
+
+
+
+    <div id="quoteBox">
+
+        <p id="selectedCategory">
+            📂 Study
+        </p>
+
+        <p id="quoteText">
+            Click New Quote
+        </p>
+
+    </div>
+
+
+
+    <button class="main-btn"
+    onclick="getQuote()">
+    New Quote
+    </button>
+
+
+
+    <button class="main-btn"
+    onclick="showAll()">
+    Show All
+    </button>
+
+
+
+    <br><br>
+
+
+
+    <input
+    id="newQuote"
+    placeholder="Write your quote">
+
+
+
+    <br>
+
+
+
+    <button class="main-btn"
+    onclick="addQuote()">
+
+        Save Quote
+
+    </button>
+
+
 
     <div id="allQuotes"></div>
+
+
 </div>
+
+
+
 
 <script>
 
+
+let currentCategory = "Study";
+
+
+
+function setCategory(category) {
+
+    currentCategory = category;
+
+
+    document.getElementById(
+    "selectedCategory"
+    ).innerText =
+
+    "📂 " + category;
+
+}
+
+
+
+
 function getQuote() {
-    fetch('/get_quote')
-    .then(r => r.json())
-    .then(data => {
-        document.getElementById("quote").innerText = data.quote;
-    });
-}
 
-function addQuote() {
-    let q = document.getElementById("newQuote").value;
+    fetch(
+    '/random_quote/' +
+    currentCategory
+    )
 
-    fetch('/add_quote', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({quote: q})
-    })
-    .then(() => {
-        document.getElementById("newQuote").value = "";
-        getQuote();
-    });
-}
+    .then(res => res.json())
 
-function loadAll() {
-    fetch('/all_quotes')
-    .then(r => r.json())
     .then(data => {
 
-        let box = document.getElementById("allQuotes");
+        document.getElementById(
+        "quoteText"
+        ).innerText =
+
+        data.quote;
+
+    });
+
+}
+
+
+
+
+function showAll() {
+
+    fetch(
+    '/all_quotes/' +
+    currentCategory
+    )
+
+    .then(res => res.json())
+
+    .then(data => {
+
+        let box =
+        document.getElementById(
+        "allQuotes"
+        );
+
+
         box.innerHTML = "";
 
-        data.forEach(q => {
 
-            let div = document.createElement("div");
-            div.className = "q";
+        data.forEach(item => {
 
-            let text = document.createElement("span");
-            text.innerText = q;
+            let parts =
+            item.split("|");
 
-            let btn = document.createElement("button");
-            btn.innerText = "Delete";
 
-            btn.onclick = function() {
-                deleteQuote(q);
-            };
+            let quote =
+            parts[1];
 
-            div.appendChild(text);
-            div.appendChild(btn);
+
+
+            let div =
+            document.createElement("div");
+
+
+            div.className =
+            "quote-item";
+
+
+            div.innerHTML =
+
+            quote +
+
+            "<br>" +
+
+            "<button class='delete-btn' onclick=\"deleteQuote('" +
+
+            quote +
+
+            "')\">Delete</button>";
+
+
 
             box.appendChild(div);
 
         });
 
     });
+
 }
 
-function deleteQuote(q) {
-    fetch('/delete_quote', {
+
+
+
+function addQuote() {
+
+    let quote =
+
+    document.getElementById(
+    "newQuote"
+    ).value;
+
+
+
+    fetch('/add_quote', {
+
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({quote: q})
+
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify({
+
+            category:
+            currentCategory,
+
+            quote: quote
+
+        })
+
     })
+
     .then(() => {
-        loadAll();
+
+        alert("Saved!");
+
+        document.getElementById(
+        "newQuote"
+        ).value = "";
+
     });
+
 }
+
+
+
+
+function deleteQuote(quote) {
+
+    fetch('/delete_quote', {
+
+        method: 'POST',
+
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify({
+
+            category:
+            currentCategory,
+
+            quote: quote
+
+        })
+
+    })
+
+    .then(() => {
+
+        showAll();
+
+    });
+
+}
+
+
 
 </script>
+
 
 </body>
 </html>

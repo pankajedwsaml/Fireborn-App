@@ -6,247 +6,161 @@
 
     <meta name="viewport"
     content="width=device-width, initial-scale=1.0">
+<style>
 
-    <style>
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
 
-        * {
-            box-sizing: border-box;
-        }
+body {
+    margin: 0;
+    padding: 14px;
 
+    font-family: Arial;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-        body {
+    min-height: 100vh;
 
-            margin: 0;
-            padding: 12px;
+    background: linear-gradient(
+        135deg,
+        #1e3a8a,
+        #3b82f6,
+        #60a5fa
+    );
+}
 
-            font-family: Arial;
+.container {
+    width: 100%;
+    max-width: 440px;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+    background: rgba(255,255,255,0.18);
 
-            min-height: 100vh;
+    backdrop-filter: blur(18px);
 
-            background:
-            linear-gradient(
-            135deg,
-            #1e3a8a,
-            #3b82f6,
-            #60a5fa);
+    border-radius: 28px;
 
-        }
+    padding: 26px;
 
+    text-align: center;
 
+    box-shadow: 0px 12px 30px rgba(0,0,0,0.25);
+}
 
-        .container {
+h1 {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
 
-            width: 100%;
-            max-width: 420px;
+button {
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.15s ease;
+}
 
-            background:
-            rgba(255,255,255,0.18);
+button:active {
+    transform: scale(0.96);
+}
 
-            backdrop-filter: blur(18px);
+.filter-btn {
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
+    color: white;
 
-            border:
-            1px solid rgba(255,255,255,0.2);
+    padding: 12px 14px;
 
-            border-radius: 25px;
+    border-radius: 14px;
 
-            padding: 20px;
+    margin: 5px;
 
-            text-align: center;
+    font-size: 15px;
+}
 
-            box-shadow:
-            0px 12px 30px rgba(0,0,0,0.25);
+.main-btn {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
 
-        }
+    padding: 14px 18px;
 
+    border-radius: 14px;
 
+    margin: 8px;
 
-        h1 {
+    font-size: 16px;
+}
 
-            color: white;
+#quoteBox {
+    background: rgba(255,255,255,0.95);
 
-            font-size: 24px;
+    border-radius: 20px;
 
-            margin-bottom: 20px;
+    padding: 22px;
 
-        }
+    margin-top: 18px;
 
+    min-height: 100px;
+}
 
+#selectedCategory {
+    color: #ea580c;
+    font-weight: bold;
+    font-size: 19px;
+}
 
-        button {
+#quoteText {
+    color: #1e293b;
 
-            border: none;
+    font-size: 22px;
 
-            cursor: pointer;
+    line-height: 1.5;
+}
 
-            font-weight: bold;
+input {
+    width: 100%;
 
-        }
+    padding: 16px;
 
+    margin-top: 16px;
 
+    border-radius: 14px;
 
-        .filter-btn {
+    border: none;
 
-            background:
-            linear-gradient(
-            135deg,
-            #f59e0b,
-            #ea580c);
+    font-size: 16px;
+}
 
-            color: white;
+.quote-item {
+    background: white;
 
-            padding: 10px 14px;
+    margin-top: 12px;
 
-            border-radius: 12px;
+    padding: 16px;
 
-            margin: 4px;
+    border-radius: 14px;
 
-            font-size: 14px;
+    text-align: left;
 
-        }
+    font-size: 16px;
+}
 
+.delete-btn {
+    margin-top: 10px;
 
+    background: crimson;
+    color: white;
 
-        .main-btn {
+    padding: 10px 14px;
 
-            background:
-            linear-gradient(
-            135deg,
-            #2563eb,
-            #1d4ed8);
+    border-radius: 10px;
 
-            color: white;
+    font-size: 14px;
+}
 
-            padding: 12px 16px;
-
-            border-radius: 12px;
-
-            margin: 6px;
-
-            font-size: 15px;
-
-        }
-
-
-
-        #quoteBox {
-
-            background:
-            rgba(255,255,255,0.95);
-
-            border-radius: 18px;
-
-            padding: 18px;
-
-            margin-top: 18px;
-
-        }
-
-
-
-        #selectedCategory {
-
-            color: #ea580c;
-
-            font-weight: bold;
-
-            font-size: 16px;
-
-        }
-
-
-
-        #quoteText {
-
-            color: #1e293b;
-
-            font-size: 18px;
-
-            line-height: 1.5;
-
-        }
-
-
-
-        input {
-
-            width: 100%;
-
-            padding: 14px;
-
-            margin-top: 15px;
-
-            border-radius: 12px;
-
-            border: none;
-
-            font-size: 15px;
-
-        }
-
-
-
-        .quote-item {
-
-            background: white;
-
-            margin-top: 12px;
-
-            padding: 14px;
-
-            border-radius: 12px;
-
-            text-align: left;
-
-            font-size: 15px;
-
-        }
-
-
-
-        .delete-btn {
-
-            margin-top: 10px;
-
-            background: crimson;
-
-            color: white;
-
-            padding: 8px 12px;
-
-            border-radius: 8px;
-
-        }
-
-
-
-        @media (max-width: 480px) {
-
-            h1 {
-                font-size: 22px;
-            }
-
-            .filter-btn {
-                font-size: 13px;
-                padding: 9px 11px;
-            }
-
-            .main-btn {
-                font-size: 14px;
-            }
-
-            #quoteText {
-                font-size: 16px;
-            }
-
-        }
-
-    </style>
-
+</style>
 </head>
 
 <body>

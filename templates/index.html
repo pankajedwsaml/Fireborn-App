@@ -4,436 +4,324 @@
 
     <title>Fireborn Motivation</title>
 
-    <meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
-<style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
+    <style>
 
-body {
-    margin: 0;
-    padding: 14px;
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-    font-family: Arial;
+        body {
+            margin: 0;
+            padding: 14px;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+            font-family: Arial;
 
-    min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-    background: linear-gradient(
-        135deg,
-        #1e3a8a,
-        #3b82f6,
-        #60a5fa
-    );
-}
+            min-height: 100vh;
 
-.container {
-    width: 100%;
-    max-width: 440px;
+            background: linear-gradient(
+                135deg,
+                #1e3a8a,
+                #3b82f6,
+                #60a5fa
+            );
+        }
 
-    background: rgba(255,255,255,0.18);
+        .container {
+            width: 100%;
+            max-width: 440px;
 
-    backdrop-filter: blur(18px);
+            background: rgba(255,255,255,0.18);
 
-    border-radius: 28px;
+            backdrop-filter: blur(18px);
 
-    padding: 26px;
+            border-radius: 28px;
 
-    text-align: center;
+            padding: 24px;
 
-    box-shadow: 0px 12px 30px rgba(0,0,0,0.25);
-}
+            text-align: center;
 
-h1 {
-    color: white;
-    font-size: 28px;
-    margin-bottom: 20px;
-}
+            box-shadow: 0px 12px 30px rgba(0,0,0,0.25);
+        }
 
-button {
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.15s ease;
-}
+        /* HEADER + VERSION */
+        .header {
+            text-align: center;
+            margin-bottom: 16px;
+        }
 
-button:active {
-    transform: scale(0.96);
-}
+        .version-badge {
+            display: inline-block;
 
-.filter-btn {
-    background: linear-gradient(135deg, #f59e0b, #ea580c);
-    color: white;
+            background: rgba(0,0,0,0.35);
+            color: white;
 
-    padding: 12px 14px;
+            padding: 6px 14px;
 
-    border-radius: 14px;
+            border-radius: 20px;
 
-    margin: 5px;
+            font-size: 13px;
 
-    font-size: 15px;
-}
+            font-weight: bold;
 
-.main-btn {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    color: white;
+            letter-spacing: 2px;
 
-    padding: 14px 18px;
+            margin-bottom: 8px;
 
-    border-radius: 14px;
+            backdrop-filter: blur(10px);
 
-    margin: 8px;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+        }
 
-    font-size: 16px;
-}
+        h1 {
+            margin: 0;
+            color: white;
 
-#quoteBox {
-    background: rgba(255,255,255,0.95);
+            font-size: 28px;
+        }
 
-    border-radius: 20px;
+        /* BUTTONS */
+        button {
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.15s ease;
+        }
 
-    padding: 22px;
+        button:active {
+            transform: scale(0.96);
+        }
 
-    margin-top: 18px;
+        .filter-btn {
+            background: linear-gradient(135deg, #f59e0b, #ea580c);
+            color: white;
 
-    min-height: 100px;
-}
+            padding: 12px 14px;
 
-#selectedCategory {
-    color: #ea580c;
-    font-weight: bold;
-    font-size: 19px;
-}
+            border-radius: 14px;
 
-#quoteText {
-    color: #1e293b;
+            margin: 5px;
 
-    font-size: 22px;
+            font-size: 15px;
+        }
 
-    line-height: 1.5;
-}
+        .main-btn {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
 
-input {
-    width: 100%;
+            padding: 14px 18px;
 
-    padding: 16px;
+            border-radius: 14px;
 
-    margin-top: 16px;
+            margin: 8px;
 
-    border-radius: 14px;
+            font-size: 16px;
+        }
 
-    border: none;
+        /* QUOTE BOX */
+        #quoteBox {
+            background: rgba(255,255,255,0.95);
 
-    font-size: 16px;
-}
+            border-radius: 20px;
 
-.quote-item {
-    background: white;
+            padding: 22px;
 
-    margin-top: 12px;
+            margin-top: 18px;
 
-    padding: 16px;
+            min-height: 100px;
+        }
 
-    border-radius: 14px;
+        #selectedCategory {
+            color: #ea580c;
+            font-weight: bold;
+            font-size: 18px;
+        }
 
-    text-align: left;
+        #quoteText {
+            color: #1e293b;
 
-    font-size: 16px;
-}
+            font-size: 22px;
 
-.delete-btn {
-    margin-top: 10px;
+            line-height: 1.5;
+        }
 
-    background: crimson;
-    color: white;
+        input {
+            width: 100%;
 
-    padding: 10px 14px;
+            padding: 16px;
 
-    border-radius: 10px;
+            margin-top: 16px;
 
-    font-size: 14px;
-}
+            border-radius: 14px;
 
-</style>
+            border: none;
+
+            font-size: 16px;
+        }
+
+        .quote-item {
+            background: white;
+
+            margin-top: 12px;
+
+            padding: 16px;
+
+            border-radius: 14px;
+
+            text-align: left;
+
+            font-size: 16px;
+        }
+
+        .delete-btn {
+            margin-top: 10px;
+
+            background: crimson;
+            color: white;
+
+            padding: 10px 14px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+        }
+
+    </style>
+
 </head>
 
 <body>
 
-
 <div class="container">
 
-    <h1>🔥 Fireborn Motivation</h1>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="version-badge">V6</div>
+        <h1>🔥 Fireborn Motivation</h1>
+    </div>
 
+    <!-- CATEGORY BUTTONS -->
+    <button class="filter-btn" onclick="setCategory('Study')">Study</button>
+    <button class="filter-btn" onclick="setCategory('Gym')">Gym</button>
+    <button class="filter-btn" onclick="setCategory('Life')">Life</button>
+    <button class="filter-btn" onclick="setCategory('Fireborn')">Fireborn</button>
 
-    <button class="filter-btn"
-    onclick="setCategory('Study')">
-    Study
-    </button>
-
-
-    <button class="filter-btn"
-    onclick="setCategory('Gym')">
-    Gym
-    </button>
-
-
-    <button class="filter-btn"
-    onclick="setCategory('Life')">
-    Life
-    </button>
-
-
-    <button class="filter-btn"
-    onclick="setCategory('Fireborn')">
-    Fireborn
-    </button>
-
-
-
+    <!-- QUOTE BOX -->
     <div id="quoteBox">
 
-        <p id="selectedCategory">
-            📂 Study
-        </p>
+        <p id="selectedCategory">📂 Study</p>
 
-        <p id="quoteText">
-            Click New Quote
-        </p>
+        <p id="quoteText">Click New Quote</p>
 
     </div>
 
+    <!-- ACTION BUTTONS -->
+    <button class="main-btn" onclick="getQuote()">New Quote</button>
 
+    <button class="main-btn" onclick="showAll()">Show All</button>
 
-    <button class="main-btn"
-    onclick="getQuote()">
-    New Quote
-    </button>
+    <!-- INPUT -->
+    <input id="newQuote" placeholder="Write your quote here...">
 
+    <button class="main-btn" onclick="addQuote()">Save Quote</button>
 
-    <button class="main-btn"
-    onclick="showAll()">
-    Show All
-    </button>
-
-
-
-    <input
-    id="newQuote"
-    placeholder="Write your quote here...">
-
-
-
-    <button class="main-btn"
-    onclick="addQuote()">
-
-        Save Quote
-
-    </button>
-
-
-
+    <!-- ALL QUOTES -->
     <div id="allQuotes"></div>
-
 
 </div>
 
-
-
-
 <script>
-
 
 let currentCategory = "Study";
 
-
-
 function setCategory(category) {
-
     currentCategory = category;
 
-
-    document.getElementById(
-    "selectedCategory"
-    ).innerText =
-
-    "📂 " + category;
-
+    document.getElementById("selectedCategory").innerText =
+        "📂 " + category;
 }
-
-
-
 
 function getQuote() {
-
-    fetch(
-    '/random_quote/' +
-    currentCategory
-    )
-
+    fetch('/random_quote/' + currentCategory)
     .then(res => res.json())
-
     .then(data => {
-
-        document.getElementById(
-        "quoteText"
-        ).innerText =
-
-        data.quote;
-
+        document.getElementById("quoteText").innerText = data.quote;
     });
-
 }
 
-
-
-
 function showAll() {
-
-    fetch(
-    '/all_quotes/' +
-    currentCategory
-    )
-
+    fetch('/all_quotes/' + currentCategory)
     .then(res => res.json())
-
     .then(data => {
 
-        let box =
-        document.getElementById(
-        "allQuotes"
-        );
-
-
+        let box = document.getElementById("allQuotes");
         box.innerHTML = "";
-
 
         data.forEach(item => {
 
-            let parts =
-            item.split("|");
+            let parts = item.split("|");
+            let quote = parts[1];
 
-
-            let quote =
-            parts[1];
-
-
-
-            let div =
-            document.createElement("div");
-
-
-            div.className =
-            "quote-item";
-
+            let div = document.createElement("div");
+            div.className = "quote-item";
 
             div.innerHTML =
-
-            quote +
-
-            "<br>" +
-
-            "<button class='delete-btn' onclick=\"deleteQuote('" +
-
-            quote +
-
-            "')\">Delete</button>";
-
-
+                quote +
+                "<br>" +
+                "<button class='delete-btn' onclick=\"deleteQuote('" +
+                quote +
+                "')\">Delete</button>";
 
             box.appendChild(div);
-
         });
 
     });
-
 }
-
-
-
 
 function addQuote() {
 
-    let quote =
-
-    document.getElementById(
-    "newQuote"
-    ).value;
-
-
+    let quote = document.getElementById("newQuote").value;
 
     fetch('/add_quote', {
-
         method: 'POST',
-
         headers: {
             'Content-Type': 'application/json'
         },
-
         body: JSON.stringify({
-
-            category:
-            currentCategory,
-
+            category: currentCategory,
             quote: quote
-
         })
-
     })
-
     .then(() => {
-
         alert("Saved!");
-
-        document.getElementById(
-        "newQuote"
-        ).value = "";
-
+        document.getElementById("newQuote").value = "";
     });
-
 }
-
-
-
 
 function deleteQuote(quote) {
 
     fetch('/delete_quote', {
-
         method: 'POST',
-
         headers: {
             'Content-Type': 'application/json'
         },
-
         body: JSON.stringify({
-
-            category:
-            currentCategory,
-
+            category: currentCategory,
             quote: quote
-
         })
-
     })
-
     .then(() => {
-
         showAll();
-
     });
-
 }
 
-
-
 </script>
-
 
 </body>
 </html>
